@@ -1,0 +1,3 @@
+{
+    "connectionstring": "mongodb+srv://tindev:Lourenco.@01@tindev.kpwgu.mongodb.net/tindevdb?retryWrites=true&w=majority"
+}
