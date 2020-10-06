@@ -3,6 +3,7 @@ const routes = require('./routes')
 const mongoose = require ('mongoose')
 const cors = require('cors')
 const connectionString = require('./connection/connection-mongo.json').connectionstring
+require('dontenv').config()
 
 const app = express()
 const server     = require('http').Server(app)
@@ -17,7 +18,7 @@ io.on('connection' , socket => {
     console.log(user,socket.id)
 })
 
-mongoose.connect(connectionString,{
+mongoose.connect(process.env.DB_URI,{
     useUnifiedTopology:true ,
     useNewUrlParser:true
 })
@@ -32,5 +33,7 @@ app.use((req,res,next) => {
 app.use(cors())
 app.use(express.json())
 app.use(routes) 
+app.use("/"), express.static(__dirname + "/../../frontend/dist")
+const port = process.env.PORT || 9999
 
-server.listen(3333)
+server.listen(port)
