@@ -2,6 +2,9 @@ const express = require('express')
 const routes = require('./routes')
 const mongoose = require ('mongoose')
 const cors = require('cors')
+const favicon = require('express-favicon')
+const path = require('path')
+
 require('dotenv').config()
 
 const app = express()
@@ -28,6 +31,14 @@ app.use((req,res,next) => {
 
     return next()
 })
+
+app.use(favicon(__dirname + '/build/favicon.ico'));
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 app.use(cors())
 app.use(express.json())
