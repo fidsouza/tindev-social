@@ -2,7 +2,6 @@ const express = require('express')
 const routes = require('./routes')
 const mongoose = require ('mongoose')
 const cors = require('cors')
-const connectionString = require('./connection/connection-mongo.json').connectionstring
 require('dotenv').config()
 
 const app = express()
@@ -33,7 +32,7 @@ app.use((req,res,next) => {
 app.use(cors())
 app.use(express.json())
 app.use(routes) 
-app.use("/"), express.static(__dirname + "/../../frontend/dist")
+app.use("/", express.static(__dirname + "/../../frontend/dist"))
 
 const port = process.env.PORT || 9999
 
