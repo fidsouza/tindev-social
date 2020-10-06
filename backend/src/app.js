@@ -32,19 +32,14 @@ app.use((req,res,next) => {
     return next()
 })
 
-app.use(favicon(__dirname + '/build/favicon.ico'));
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
+app.use(express.static(path.join(__dirname + "/../../frontend/build")))
+app.use(favicon((path.join(__dirname + "/../../frontend/build/favicon.ico"))))
 
 app.use(cors())
 app.use(express.json())
 app.use(routes) 
-app.use("/*", express.static(__dirname + "/../../frontend/dist"))
 
-const port = process.env.PORT || 9999
+const port =  process.env.PORT || 9999
 
 server.listen(port)
