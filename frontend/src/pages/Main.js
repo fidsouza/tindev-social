@@ -32,7 +32,7 @@ export default function Main({match}){
     },[match.params.id])
 
     useEffect(function(){
-        const socket = io('http://localhost:3333',{
+        const socket = io('https://backendtindevsocial.herokuapp.com/',{
             query:{
                 user:match.params.id
             }
