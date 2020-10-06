@@ -3,7 +3,7 @@ const routes = require('./routes')
 const mongoose = require ('mongoose')
 const cors = require('cors')
 const connectionString = require('./connection/connection-mongo.json').connectionstring
-require('dontenv').config()
+require('dotenv').config()
 
 const app = express()
 const server     = require('http').Server(app)
@@ -34,6 +34,7 @@ app.use(cors())
 app.use(express.json())
 app.use(routes) 
 app.use("/"), express.static(__dirname + "/../../frontend/dist")
+
 const port = process.env.PORT || 9999
 
 server.listen(port)
